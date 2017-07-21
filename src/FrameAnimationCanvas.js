@@ -4,7 +4,7 @@
  */
 class frameAnimation{
 
-    constructor(imgSrc,canvasDom,positionInfo,interFrameTime,scale=1){
+    constructor(imgSrc,canvasDom,positionInfo,interFrameTime){
         this.imgSrc = imgSrc;
         this.canvasDom = canvasDom;
         this.positionInfo = positionInfo;
@@ -12,9 +12,9 @@ class frameAnimation{
         this.timeOutIndex = -1;
         this.ifbegin = false;
         this.ifstop = false;
-        this.scale = scale;
         this.schedule = 0;
         this.interFrameTime = interFrameTime;
+        this.imgOnload=false;
 
         this.begin = this.begin.bind(this);
         this.stop = this.stop.bind(this);
@@ -35,19 +35,20 @@ class frameAnimation{
 
         img.onload = function(){
 
-                //可能之前会有占位静态图的情况
-                that.canvasDom.style.backgroundImage = "";
+            //可能之前会有占位静态图的情况
+            that.canvasDom.style.backgroundImage = "";
 
-                let beginX,beginY,realX,realY;
+            let beginX,beginY,realX,realY;
 
-                realX = that.positionInfo[index].w * (that.canvasDom.width / that.positionInfo[index].sourceW) * that.scale;
-                realY = that.positionInfo[index].h * (that.canvasDom.height / that.positionInfo[index].sourceH) * that.scale;
-                beginX = that.positionInfo[index].offX * (that.canvasDom.width / that.positionInfo[index].sourceW) - realX * (that.scale - 1)/2;
-                beginY = that.positionInfo[index].offY * (that.canvasDom.height / that.positionInfo[index].sourceH) - realY * (that.scale - 1)/2;
+            realX = that.positionInfo[index].w * (that.canvasDom.width / that.positionInfo[index].sourceW);
+            realY = that.positionInfo[index].h * (that.canvasDom.height / that.positionInfo[index].sourceH);
+
+            beginX = that.positionInfo[index].offX * (that.canvasDom.width / that.positionInfo[index].sourceW );
+            beginY = that.positionInfo[index].offY * (that.canvasDom.height / that.positionInfo[index].sourceH );
 
             ctx.clearRect(0,0,that.canvasDom.width,that.canvasDom.height);
             ctx.drawImage(img, that.positionInfo[index].x, that.positionInfo[index].y,
-                    that.positionInfo[index].w , that.positionInfo[index].h, beginX, beginY, realX, realY);
+                that.positionInfo[index].w , that.positionInfo[index].h, beginX, beginY, realX, realY);
 
         };
         img.src = this.imgSrc;
@@ -65,7 +66,6 @@ class frameAnimation{
 
         let img = new Image();
         img.onload = function(){
-
             that.canvasDom.style.backgroundImage = "";
 
             function nextFrame() {
@@ -79,10 +79,11 @@ class frameAnimation{
 
                 let beginX,beginY,realX,realY;
 
-                realX = that.positionInfo[that.frameIndex].w * (that.canvasDom.width / that.positionInfo[that.frameIndex].sourceW) * that.scale;
-                realY = that.positionInfo[that.frameIndex].h * (that.canvasDom.height / that.positionInfo[that.frameIndex].sourceH)* that.scale;
-                beginX = that.positionInfo[that.frameIndex].offX * (that.canvasDom.width / that.positionInfo[that.frameIndex].sourceW) - realX * (that.scale - 1)/2;
-                beginY = that.positionInfo[that.frameIndex].offY * (that.canvasDom.height / that.positionInfo[that.frameIndex].sourceH) - realY * (that.scale - 1)/2;
+                realX = that.positionInfo[that.frameIndex].w * (that.canvasDom.width / that.positionInfo[that.frameIndex].sourceW);
+                realY = that.positionInfo[that.frameIndex].h * (that.canvasDom.height / that.positionInfo[that.frameIndex].sourceH);
+
+                beginX = that.positionInfo[that.frameIndex].offX * (that.canvasDom.width / that.positionInfo[that.frameIndex].sourceW );
+                beginY = that.positionInfo[that.frameIndex].offY * (that.canvasDom.height / that.positionInfo[that.frameIndex].sourceH );
 
                 ctx.clearRect(0,0,that.canvasDom.width,that.canvasDom.height);
                 ctx.drawImage(img, that.positionInfo[that.frameIndex].x, that.positionInfo[that.frameIndex].y,

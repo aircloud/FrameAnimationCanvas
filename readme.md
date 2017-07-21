@@ -33,7 +33,8 @@ ani.begin();
 | canvasDom | 必须 | null | canvas对应的实际dom元素 | DOM |
 | positionInfo | 必须 | null | [Egret Texture Merger](http://developer.egret.com/cn/github/egret-docs/tools/TextureMerger/manual/index.html)生成的结果frames属性内容(转化成array) | array |
 | interFrameTime | 必须 | null | 帧间隔 | Number |
-| scale | 可选 | 1 | 放大倍数 | Number |
+
+>注意：由于之前的scale参数可能会出现问题，现在已经删除scale参数，建议直接控制canvas的大小来实现缩放功能。
 
 ### 协议
 MIT
