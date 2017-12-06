@@ -1,6 +1,6 @@
 {
   "name": "frame-animation-canvas",
-  "version": "0.0.4",
+  "version": "0.1.1",
   "description": "A Frame Animation implementation Based on HTML5 Canvas",
   "main": "index.js",
   "scripts": {

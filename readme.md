@@ -15,9 +15,11 @@ npm i frame-animation-canvas --save
 ```
 var frameAnimationCanvas = require("frame-animation-canvas");
 //...
-var ani = frameAnimationCanvas("frameResult.png",$theDomNode,ArrayFromJsonResult,60,1.15);
+var ani = frameAnimationCanvas("frameResult.png",$theDomNode,ArrayFromJsonResult,60);
 ani.begin();
 ```
+
+>注意：直接给canvas的dom指定width和height即可，无需另外传参数
 
 默认引入的是babel编译好的ES5版本，无需进行编译即可使用。
 
