@@ -14,6 +14,7 @@ npm i frame-animation-canvas --save
 
 ```
 var frameAnimationCanvas = require("frame-animation-canvas");
+
 //...
 var ani = frameAnimationCanvas("frameResult.png",$theDomNode,ArrayFromJsonResult,60);
 ani.begin();
@@ -37,6 +38,24 @@ ani.begin();
 | interFrameTime | 必须 | null | 帧间隔 | Number |
 
 >注意：由于之前的scale参数可能会出现问题，现在已经删除scale参数，建议直接控制canvas的大小来实现缩放功能。
+
+### 方法列表
+
+* begin(index)
+
+开始方法，传入index可以指定从那一帧开始，默认从第0帧开始
+
+* stop()
+
+暂停动画
+
+* recover()
+
+恢复动画执行
+
+* end()
+
+结束动画 	
 
 ### 协议
 MIT
